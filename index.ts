@@ -1,18 +1,33 @@
 import { Command } from "commander";
+import add from "./commands/add";
+import list from "./commands/list";
+import show from "./commands/show";
 
 const program = new Command();
 
 program.name("pb").description("Global pasteboard CLI").version("0.0.1");
 
 program
-  .command("split")
-  .description("Split a string into substrings and display as an array")
-  .argument("<string>", "string to split")
-  .option("--first", "display just the first substring")
-  .option("-s, --separator <char>", "separator character", ",")
-  .action((str, options) => {
-    const limit = options.first ? 1 : undefined;
-    console.log(str.split(options.separator, limit));
+  .command("add")
+  .description("Add file to pasteboard")
+  .argument("<filename>", "file to add")
+  .action((filename) => {
+    add(filename);
+  });
+
+program
+  .command("list")
+  .description("List files in pasteboard")
+  .action(() => {
+    list();
+  });
+
+program
+  .command("show")
+  .description("Show one or more files")
+  .argument("<files>", "file selector")
+  .action((files) => {
+    show(files);
   });
 
 program.parse();
