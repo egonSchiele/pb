@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "ncc build index.ts -o dist"
+    "build": "ncc build index.ts -o dist",
+    "install": "chmod +x dist/index.js && mv dist/index.js ~/.bin/pb"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^20.11.24",
     "@vercel/ncc": "^0.38.1",
     "commander": "^12.0.0",
     "enquirer": "^2.4.1",

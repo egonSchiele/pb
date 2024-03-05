@@ -1,7 +1,10 @@
+#!/usr/bin/env node
 import { Command } from "commander";
 import add from "./commands/add";
 import list from "./commands/list";
 import show from "./commands/show";
+import init from "./commands/init";
+import config from "./commands/config";
 
 const program = new Command();
 
@@ -28,6 +31,20 @@ program
   .argument("<files>", "file selector")
   .action((files) => {
     show(files);
+  });
+
+program
+  .command("init")
+  .description("initialize config")
+  .action(() => {
+    init();
+  });
+
+program
+  .command("config")
+  .description("configalize config (print current config)")
+  .action(() => {
+    config();
   });
 
 program.parse();
