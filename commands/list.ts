@@ -5,7 +5,7 @@ import Table from "easy-table";
 import c from "ansi-colors";
 export default async function list() {
   const repo = await getPasteRepository();
-  log("fetching pastes...");
+
   const allPastes = await repo
     .createQueryBuilder("paste")
     .select(["id", "title"])

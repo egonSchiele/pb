@@ -16,7 +16,7 @@ export async function dbConnection() {
     await init();
     config = getConfig();
   }
-  log("initializing db connection");
+  log("initializing db connection...");
 
   // TypeORM will create the tables for you,
   // but you will need to create the database yourself first.
@@ -42,7 +42,7 @@ export async function dbConnection() {
   // and "synchronize" database schema, call "initialize()" method of a newly created database
   // once in your application bootstrap
   await _connection.initialize();
-  log("db connection initialized");
+  log("db connection initialized.\n");
   return _connection;
 }
 

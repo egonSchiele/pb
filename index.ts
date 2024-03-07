@@ -7,8 +7,6 @@ import init from "./commands/init";
 import config from "./commands/config";
 import { log } from "@/lib/utils";
 
-log("Starting");
-
 const program = new Command();
 
 program.name("pb").description("Global pasteboard CLI").version("0.0.1");
