@@ -27,10 +27,10 @@ program
 
 program
   .command("show")
-  .description("Show one or more files")
-  .argument("<files>", "file selector")
-  .action((files) => {
-    show(files);
+  .description("Show one or more pastes")
+  .argument("<id>", "paste id")
+  .action((id) => {
+    show(id);
   });
 
 program
