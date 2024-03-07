@@ -28,7 +28,7 @@ program
 program
   .command("show")
   .description("Show one or more pastes")
-  .argument("<id>", "paste id")
+  .argument("[id]", "paste id")
   .action((id) => {
     show(id);
   });

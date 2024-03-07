@@ -1,11 +1,20 @@
 import { getPasteRepository } from "@/lib/db";
+import { Paste } from "@/lib/db/entity/Paste";
 import { exit } from "process";
 
-export default async function show(ids: string) {
+export default async function show(id?: string) {
   const repo = await getPasteRepository();
-  const paste = await repo.findOneBy({
-    id: parseInt(ids),
-  });
+  let paste: Paste | null;
+  if (id && id !== "-1") {
+    paste = await repo.findOneBy({
+      id: parseInt(id),
+    });
+  } else {
+    paste = await repo
+      .createQueryBuilder("paste")
+      .orderBy("id", "DESC")
+      .getOne();
+  }
   if (!paste) {
     console.log("No paste found");
     exit(1);
