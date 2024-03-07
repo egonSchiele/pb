@@ -1,7 +1,7 @@
 import { getPasteRepository } from "@/lib/db";
 import { Paste } from "@/lib/db/entity/Paste";
 import { exit } from "process";
-
+import c from "ansi-colors";
 export default async function show(id?: string) {
   const repo = await getPasteRepository();
   let paste: Paste | null;
@@ -19,7 +19,7 @@ export default async function show(id?: string) {
     console.log("No paste found");
     exit(1);
   }
-  console.log(paste.title);
+  console.log(c.cyan(paste.title));
   console.log(paste.text);
   exit(0);
 }

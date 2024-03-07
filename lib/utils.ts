@@ -2,7 +2,7 @@ import { resolve } from "path";
 import { homedir } from "os";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { Config } from "@/lib/types";
-
+import c from "ansi-colors";
 export const CONFIG_PATH = resolve(homedir(), ".pb.config.json");
 
 export function getConfig(): Config | null {
@@ -17,5 +17,5 @@ export function setConfig(config: Config) {
 }
 
 export function log(message: string) {
-  console.log(message);
+  console.log(c.yellow(message));
 }
