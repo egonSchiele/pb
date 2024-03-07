@@ -13,9 +13,9 @@ program.name("pb").description("Global pasteboard CLI").version("0.0.1");
 program
   .command("add")
   .description("Add file to pasteboard")
-  .argument("<filename>", "file to add")
-  .action((filename) => {
-    add(filename);
+  .argument("<filepath>", "file to add")
+  .action((filepath) => {
+    add(filepath);
   });
 
 program
