@@ -15,3 +15,7 @@ export function getConfig(): Config | null {
 export function setConfig(config: Config) {
   writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2));
 }
+
+export function log(message: string) {
+  console.log(message);
+}

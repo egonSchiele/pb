@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { Paste } from "./entity/Paste";
-import { getConfig } from "@/lib/utils";
+import { getConfig, log } from "@/lib/utils";
 import init from "@/commands/init";
 
 let _connection: DataSource | null = null;
@@ -16,6 +16,7 @@ export async function dbConnection() {
     await init();
     config = getConfig();
   }
+  log("initializing db connection");
 
   // TypeORM will create the tables for you,
   // but you will need to create the database yourself first.
@@ -41,6 +42,7 @@ export async function dbConnection() {
   // and "synchronize" database schema, call "initialize()" method of a newly created database
   // once in your application bootstrap
   await _connection.initialize();
+  log("db connection initialized");
   return _connection;
 }
 

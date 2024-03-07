@@ -5,6 +5,9 @@ import list from "./commands/list";
 import show from "./commands/show";
 import init from "./commands/init";
 import config from "./commands/config";
+import { log } from "@/lib/utils";
+
+log("Starting");
 
 const program = new Command();
 
