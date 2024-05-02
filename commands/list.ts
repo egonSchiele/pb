@@ -3,21 +3,34 @@ import { log } from "@/lib/utils";
 import { exit } from "process";
 import Table from "easy-table";
 import c from "ansi-colors";
-export default async function list() {
+import { Paste } from "@/lib/db/entity/Paste";
+export default async function list(all: boolean) {
   const repo = await getPasteRepository();
 
-  const allPastes = await repo
-    .createQueryBuilder("paste")
-    .select(["id", "title"])
-    .orderBy("id", "DESC")
-    .getRawMany();
+  const allPastes = await repo.find();
+  if (all) {
+    printLong(allPastes);
+  } else {
+    printShort(allPastes);
+  }
+  exit(0);
+}
+
+function printShort(pastes: Paste[]) {
   var t = new Table();
 
-  allPastes.forEach((paste) => {
+  pastes.forEach((paste) => {
     t.cell(c.cyan("id"), paste.id);
     t.cell(c.cyan("title"), paste.title);
     t.newRow();
   });
   console.log(t.toString());
-  exit(0);
+}
+
+function printLong(pastes: Paste[]) {
+  pastes.forEach((paste) => {
+    console.log(c.cyan(`${paste.id}`), c.yellow(`${paste.title}`));
+    console.log(paste.text);
+    console.log();
+  });
 }
